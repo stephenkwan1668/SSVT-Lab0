@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "init-build-run",
+          "type": "shell",
+          "command": "stack build && stack exec my-project.exe",
+          "problemMatcher": [],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "options": {
+              "shell": {
+                  "executable": "cmd.exe",
+                  "args": ["/c"]
+              }
+          }
+      }
+  ]
+}
