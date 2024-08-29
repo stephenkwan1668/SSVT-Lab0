@@ -13,7 +13,7 @@ import Lab0
       reverseNumList,
       factorial,
       reverseList,
-      forall )
+      forall, safeDivide )
 
 evenNumberList = [2,4,6,8]
 evenNumber = 4
@@ -82,9 +82,14 @@ main = do
     name <- getLine
     putStrLn ("Hello, " ++ name ++ "!")
 
+    let divideResult = safeDivide 5 0
+    case divideResult of
+      Nothing -> putStrLn("Can not divide by 0")
+      Just value -> putStrLn ("safeDivide result: " ++ show value)
     
 
-
+    let divideResult2 = safeDivide 5 1
+    putStrLn $ "safeDivide result: " ++ maybe "Division by zero" show divideResult2
 
     
 

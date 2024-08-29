@@ -84,4 +84,7 @@ reverseList :: [a] -> [a]
 reverseList [] = []  -- Base case: the reverse of an empty list is an empty list
 reverseList (x:xs) = reverseList xs ++ [x]  -- Recursive case: reverse the tail and append the head at the end
 
+safeDivide :: Int -> Int -> Maybe Int
+safeDivide _ 0 = Nothing            -- If the second number is 0, return Nothing (no result).
+safeDivide x y = Just (x `div` y)   -- Otherwise, return the result wrapped in Just.
 
