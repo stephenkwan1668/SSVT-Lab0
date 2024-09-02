@@ -31,6 +31,14 @@ probs n = do
     print ps
     return (p:ps)
 
+squaredList :: [Integer] -> [Integer]
+squaredList list = map (\x -> x*x) list
+
+sumUpList :: [Integer] -> Integer
+sumUpList [] = 0
+sumUpList (x:xs) = x + sumUpList xs
+
+
 reversibleStream :: [Integer]
 reversibleStream = undefined
 

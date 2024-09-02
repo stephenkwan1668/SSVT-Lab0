@@ -13,7 +13,9 @@ import Lab0
       reverseNumList,
       factorial,
       reverseList,
-      forall, safeDivide )
+      forall, safeDivide,
+      squaredList,
+      sumUpList )
 
 evenNumberList = [2,4,6,8]
 evenNumber = 4
@@ -91,6 +93,11 @@ main = do
     let divideResult2 = safeDivide 5 1
     putStrLn $ "safeDivide result: " ++ maybe "Division by zero" show divideResult2
 
-    
+    -- let summedValueOfList = squaredList[1,2,3,4,5] 
+    putStrLn "squaredList value1 that is summed:"
+    print $ (squaredList[1,2,3])
+    let numbery =  sumUpList (squaredList[1,2,3])
+    print numbery
+
 
 
