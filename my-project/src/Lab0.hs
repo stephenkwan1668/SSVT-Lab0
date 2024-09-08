@@ -12,6 +12,7 @@ prime n = n > 1 && all (\ x -> rem n x /= 0) xs
 primes :: [Integer]
 primes = 2 :filter prime [3..] 
 
+
 infix 1 -->
 
 (-->) :: Bool -> Bool -> Bool
@@ -31,8 +32,8 @@ probs n = do
     print ps
     return (p:ps)
 
-squaredList :: [Integer] -> [Integer]
-squaredList list = map (\x -> x*x) list
+-- squaredList :: [Integer] -> [Integer]
+-- squaredList list = map (\x -> x*x) list
 
 sumUpList :: [Integer] -> Integer
 sumUpList [] = 0
@@ -95,4 +96,49 @@ reverseList (x:xs) = reverseList xs ++ [x]  -- Recursive case: reverse the tail 
 safeDivide :: Int -> Int -> Maybe Int
 safeDivide _ 0 = Nothing            -- If the second number is 0, return Nothing (no result).
 safeDivide x y = Just (x `div` y)   -- Otherwise, return the result wrapped in Just.
+
+
+
+-- equal :: Int -> Double -> Bool
+-- equal fun1 fun2 = mod fun1 fun2 == 0
+
+-- -- sumedUpCubedList :: Integer -> [Integer] -> Integer
+-- -- sumedUpCubedList = cubes . sumUpList
+
+-- -- sumUpList :: [Integer] -> 
+
+  -- Function to generate the list of cubes
+squaredList :: [Int]
+squaredList = map (\x -> x * x) [1..]
+
+-- Function to sum up the first n cubes
+squares :: Int -> Int
+squares n = sum (take n squaredList)
+
+-- Function to calculate the result of the equation
+rightFirstEquation :: Int -> Double
+rightFirstEquation n = fromIntegral (n * (n + 1) * (2 * n + 1)) / 6
+
+-- Function to compare if cubes result and rightFirstEquation are equal
+equal1 :: Int -> Bool
+equal1 n = fromIntegral (squares n) == rightFirstEquation n
+
+cubedList :: [Int] 
+cubedList = map(\x -> x * x * x) [1..]
+
+cubes :: Int -> Int
+cubes n = sum (take n cubedList)
+
+rightSecondEquation :: Int -> Double
+rightSecondEquation n = fromIntegral (n * (n + 1) `div` 2) ^2
+
+-- Function to compare if cubes result and rightFirstEquation are equal
+equal2 :: Int -> Bool
+equal2 n = fromIntegral (cubes n) == rightSecondEquation n
+
+prop_squaresEqualToRightFirstEquation :: Int -> Bool
+prop_squaresEqualToRightFirstEquation n = equal1 n
+
+prop_squaresEqualToRightSecondEquation :: Int -> Bool
+prop_squaresEqualToRightSecondEquation n = equal2 n
 
