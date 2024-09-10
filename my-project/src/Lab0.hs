@@ -153,16 +153,8 @@ classifyQuartile p
 
 prop_uniformDistribution :: Property
 prop_uniformDistribution = forAll (vectorOf 10000 (choose (0, 1))) $ \numbers ->
-    let quartiles = map classifyQuartile numbers
-        countOfQ1 = length (filter (== 1) quartiles)
-        countOfQ2 = length (filter (== 2) quartiles)
-        countOfQ3 = length (filter (== 3) quartiles)
-        countOfQ4 = length (filter (== 4) quartiles)
-        total = countOfQ1 + countOfQ2 + countOfQ3 + countOfQ4
-        distOfQ1 = fromIntegral countOfQ1 / fromIntegral total
-        distOfQ2 = fromIntegral countOfQ2 / fromIntegral total
-        distOfQ3 = fromIntegral countOfQ3 / fromIntegral total
-        distOfQ4 = fromIntegral countOfQ4 / fromIntegral total
+    let quartileCounts = map (\q -> length (filter (== q) (map classifyQuartile numbers))) [1..4]
+        total = sum quartileCounts
+        quartileDist = map (\count -> fromIntegral count / fromIntegral total) quartileCounts
         margin = 0.01
-    in abs (distOfQ1 - 0.25) < margin && abs (distOfQ2 - 0.25) < margin && abs (distOfQ3 - 0.25) < margin && abs (distOfQ4 - 0.25) < margin
-        
+    in all (\dist -> abs (dist - 0.25) < margin) quartileDist
