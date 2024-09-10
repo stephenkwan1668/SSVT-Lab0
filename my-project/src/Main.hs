@@ -1,17 +1,17 @@
 module Main where
 
 import Test.QuickCheck
-import Lab0
-
+import Lab0 
 
 -- evenNumberList = [2,4,6,8]
 -- evenNumber = 4
 -- exampleString = "this is nice"
-
 main :: IO ()
 main = do 
   quickCheck prop_squaresEqualToRightSecondEquation
   quickCheck prop_squaresEqualToRightFirstEquation
+  quickCheck prop_uniformDistribution
+
 
 
 
