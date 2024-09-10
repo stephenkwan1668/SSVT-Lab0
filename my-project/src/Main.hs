@@ -10,9 +10,11 @@ import Lab0
 
 main :: IO ()
 main = do 
-  quickCheck prop_squaresEqualToRightSecondEquation
-  quickCheck prop_squaresEqualToRightFirstEquation
-
+  quickCheck prop_noTriangle
+  quickCheck prop_equilateral
+  quickCheck prop_rectangular
+  quickCheck prop_isosceles
+  quickCheck prop_validTriangle
 
 
     -- -- Pre-defined functions 

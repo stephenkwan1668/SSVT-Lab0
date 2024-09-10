@@ -142,3 +142,47 @@ prop_squaresEqualToRightFirstEquation n = equal1 n
 prop_squaresEqualToRightSecondEquation :: Int -> Bool
 prop_squaresEqualToRightSecondEquation n = equal2 n
 
+
+data Shape = NoTriangle | Equilateral | Isosceles | Rectangular | Other
+  deriving (Eq, Show)
+
+triangle :: Integer -> Integer -> Integer -> Shape
+triangle a b c
+  | not (validTriangle sides) = NoTriangle
+  | isEquilateral sides = Equilateral
+  | isRectangular sides = Rectangular
+  | isIsosceles sides = Isosceles
+  | otherwise = Other
+  where
+    sides = [a, b, c]
+
+validTriangle :: [Integer] -> Bool
+validTriangle [a, b, c] = a + b > c && a + c > b && b + c > a
+
+isEquilateral :: [Integer] -> Bool
+isEquilateral [a, b, c] = a == b && b == c
+
+isIsosceles :: [Integer] -> Bool
+isIsosceles [a, b, c] = length (filter (== head sortedSides) sortedSides) >= 2
+  where
+    sortedSides = sort [a, b, c]
+
+isRectangular :: [Integer] -> Bool
+isRectangular [a, b, c] = a^2 + b^2 == c^2 || a^2 + c^2 == b^2 || b^2 + c^2 == a^2
+
+
+prop_noTriangle :: Integer -> Integer -> Integer -> Property
+prop_noTriangle a b c = (a + b <= c || a + c <= b || b + c <= a) ==> triangle a b c == NoTriangle
+
+prop_equilateral :: Integer -> Property
+prop_equilateral a = (a > 0) ==> triangle a a a == Equilateral
+
+prop_rectangular :: Integer -> Integer -> Integer -> Property
+prop_rectangular a b c = isRectangular [a, b, c] ==> triangle a b c == Rectangular
+
+prop_isosceles :: Integer -> Integer -> Property
+prop_isosceles a b = (a > 0 && b > 0 && a /= b) ==> triangle a a b == Isosceles
+
+prop_validTriangle :: Integer -> Integer -> Integer -> Property
+prop_validTriangle a b c = validTriangle [a, b, c] ==> triangle a b c /= NoTriangle
+
