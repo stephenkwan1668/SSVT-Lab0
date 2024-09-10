@@ -15,7 +15,8 @@ import Lab0
       reverseList,
       forall, safeDivide,
       squaredList,
-      sumUpList )
+      sumUpList,
+      composedFunction )
 
 evenNumberList = [2,4,6,8]
 evenNumber = 4
@@ -98,6 +99,10 @@ main = do
     print $ (squaredList[1,2,3])
     let numbery =  sumUpList (squaredList[1,2,3])
     print numbery
+
+    
+
+
 
 
 

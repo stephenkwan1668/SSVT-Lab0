@@ -96,3 +96,33 @@ safeDivide :: Int -> Int -> Maybe Int
 safeDivide _ 0 = Nothing            -- If the second number is 0, return Nothing (no result).
 safeDivide x y = Just (x `div` y)   -- Otherwise, return the result wrapped in Just.
 
+-- Define a list with map, assign, and filtering
+funList :: [Integer]
+funList = [x * 2 | x <- [10..13], x /= 11, x /= 12]
+
+-- Practice of function application, instead of having to use (), $ can be used
+addTwoNumbers:: Integer -> Integer -> Integer
+addTwoNumbers x y = x + y
+
+square:: Integer -> Integer
+square x = x * x
+
+-- result :: Int
+-- result = square $ addTwoNumbers 3 4
+
+-- result :: Int
+-- result = square (addTwoNumbers 3 4)
+
+-- Function composition
+double :: Int -> Int
+double x = x * 2
+
+increment :: Int -> Int
+increment x = x + 1
+
+composedFunction1 :: Int -> Int
+composedFunction1 = double . increment
+
+composedFunction2
+
+
