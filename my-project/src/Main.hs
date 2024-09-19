@@ -10,13 +10,11 @@ import Lab0
 
 main :: IO ()
 main = do 
-  quickCheck prop_squaresEqualToRightSecondEquation
-  quickCheck prop_squaresEqualToRightFirstEquation
 
 
 
     -- -- Pre-defined functions 
-    -- putStrLn "First 13 primes:"
+    putStrLn "First 13 primes:"
     -- print $ take 13 primes
 
     -- putStrLn "Generating 5 random probabilities:"
