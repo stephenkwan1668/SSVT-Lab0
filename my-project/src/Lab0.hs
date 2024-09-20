@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 module Lab0 where
 
 import Data.List
@@ -141,4 +142,65 @@ prop_squaresEqualToRightFirstEquation n = equal1 n
 
 prop_squaresEqualToRightSecondEquation :: Int -> Bool
 prop_squaresEqualToRightSecondEquation n = equal2 n
+
+
+data Form = Prop Name
+          | Neg Form
+          | Cnj [Form]
+          | Dsj [Form]
+          | Impl Form Form
+          | Equiv Form Form
+          deriving (Eq, Ord)
+
+type Name = String
+
+instance Show Form where
+  show (Prop name) = "Prop " ++ show name
+  show (Neg formula) = "Neg (" ++ show formula ++ ")"
+  show (Cnj formulas) = "Cnj [" ++ unwords (map show formulas) ++ "]"
+  show (Dsj formulas) = "Dsj [" ++ unwords (map show formulas) ++ "]"
+  show (Impl premise conclusion) = "Impl (" ++ show premise ++ ") (" ++ show conclusion ++ ")"
+  show (Equiv left right) = "Equiv (" ++ show left ++ ") (" ++ show right ++ ")"
+
+arrowfree :: Form -> Form
+arrowfree formula = 
+  case formula of
+    Prop name -> Prop name  
+    Neg innerFormula -> Neg (arrowfree innerFormula)  
+    Cnj formulas -> Cnj (map arrowfree formulas)  
+    Dsj formulas -> Dsj (map arrowfree formulas)  
+    Impl premise conclusion -> Dsj [Neg (arrowfree premise), arrowfree conclusion] 
+    Equiv left right -> Cnj [Dsj [Neg (arrowfree left), arrowfree right], Dsj [Neg (arrowfree right), arrowfree left]]  
+
+nnf :: Form -> Form
+nnf formula = 
+  case formula of
+    Prop name -> Prop name 
+    Neg (Prop name) -> Neg (Prop name)  
+    Neg (Neg innerFormula) -> nnf innerFormula 
+    Neg (Cnj formulas) -> Dsj (map (nnf . Neg) formulas)  
+    Neg (Dsj formulas) -> Cnj (map (nnf . Neg) formulas)  
+    Cnj formulas -> Cnj (map nnf formulas) 
+    Dsj formulas -> Dsj (map nnf formulas)  
+    _ -> formula  
+
+distribute :: Form -> Form
+distribute formula = 
+  case formula of
+    Dsj [Cnj [first, second], third] -> 
+      Cnj [distribute (Dsj [first, third]), distribute (Dsj [second, third])]  
+    Dsj [first, Cnj [second, third]] -> 
+      Cnj [distribute (Dsj [first, second]), distribute (Dsj [first, third])]  
+    Cnj formulas -> Cnj (map distribute formulas)  
+    Dsj formulas -> Dsj (map distribute formulas)  
+    _ -> formula  
+
+cnf :: Form -> Form
+cnf = distribute . nnf . arrowfree
+
+main :: IO ()
+main = do
+    let exampleFormula = Impl(Impl(Prop "A") (Prop "B")) (Prop "C")
+    putStrLn $ "Original Formula: " ++ show exampleFormula
+    putStrLn $ "CNF: " ++ show (cnf exampleFormula)
 

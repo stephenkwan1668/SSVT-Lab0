@@ -4,17 +4,21 @@ import Test.QuickCheck
 import Lab0
 
 
+-- Test the simplified CNF conversion
+main :: IO ()
+main = do
+    let exampleFormula = Impl(Impl(Prop "A") (Prop "B")) (Prop "C")
+    putStrLn $ "Original Formula: " ++ show exampleFormula
+    putStrLn $ "CNF: " ++ show (cnf exampleFormula)
+
+
+
+
 -- evenNumberList = [2,4,6,8]
 -- evenNumber = 4
 -- exampleString = "this is nice"
-
-main :: IO ()
-main = do 
-
-
-
     -- -- Pre-defined functions 
-    putStrLn "First 13 primes:"
+    -- putStrLn "First 13 primes:"
     -- print $ take 13 primes
 
     -- putStrLn "Generating 5 random probabilities:"
