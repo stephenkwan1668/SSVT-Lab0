@@ -159,6 +159,13 @@ findCounterexamples currentPrimes (nextPrime:remainingPrimes) =
     then (newPrimes, productPlusOne) : findCounterexamples newPrimes remainingPrimes
     else findCounterexamples newPrimes remainingPrimes
 
+prop_productOfPrimesNotPrime :: [Integer] -> Bool
+prop_productOfPrimesNotPrime currentPrimes =
+  let productPlusOne = productOfPrimes currentPrimes + 1
+  in not (isPrime productPlusOne) || null currentPrimes
+
 main :: IO ()
 main = do
   print $ take 10 counterexamples  
+  putStrLn "Running QuickCheck..."
+  quickCheck prop_productOfPrimesNotPrime
