@@ -5,12 +5,7 @@ import Data.Char
 import System.Random
 import Test.QuickCheck
 
-prime :: Integer -> Bool
-prime n = n > 1 && all (\ x -> rem n x /= 0) xs
-  where xs = takeWhile (\ y -> y^2 <= n) primes
 
-primes :: [Integer]
-primes = 2 :filter prime [3..] 
 
 
 infix 1 -->
@@ -142,3 +137,28 @@ prop_squaresEqualToRightFirstEquation n = equal1 n
 prop_squaresEqualToRightSecondEquation :: Int -> Bool
 prop_squaresEqualToRightSecondEquation n = equal2 n
 
+isPrime :: Integer -> Bool
+isPrime n = n > 1 && all (\x -> n `rem` x /= 0) [2..(floor . sqrt . fromIntegral $ n)]
+
+primes :: [Integer]
+primes = filter isPrime [2..]
+
+productOfPrimes :: [Integer] -> Integer
+productOfPrimes = foldr (*) 1
+
+counterexamples :: [([Integer], Integer)]
+counterexamples = findCounterexamples [] primes
+
+findCounterexamples :: [Integer] -> [Integer] -> [([Integer], Integer)]
+findCounterexamples currentPrimes (nextPrime:remainingPrimes) =
+  let
+    newPrimes = currentPrimes ++ [nextPrime]
+    productPlusOne = productOfPrimes newPrimes + 1
+  in
+    if not (isPrime productPlusOne)
+    then (newPrimes, productPlusOne) : findCounterexamples newPrimes remainingPrimes
+    else findCounterexamples newPrimes remainingPrimes
+
+main :: IO ()
+main = do
+  print $ take 10 counterexamples  

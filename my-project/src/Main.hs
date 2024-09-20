@@ -9,10 +9,9 @@ import Lab0
 -- exampleString = "this is nice"
 
 main :: IO ()
-main = do 
-  quickCheck prop_squaresEqualToRightSecondEquation
-  quickCheck prop_squaresEqualToRightFirstEquation
-
+main = do
+  -- QuickCheck test for the conjecture
+  print $ take 10 counterexamples  -- Show first 10 counterexamples
 
 
     -- -- Pre-defined functions 
