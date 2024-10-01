@@ -7,7 +7,7 @@ import Exercise4
 import Exercise5
 import Exercise6
 
-import MultiplicationTable (multiplicationTableProps)
+import MultiplicationTable (multiplicationTableProps, multiplicationTable)
 import Mutation
 
 import Test.QuickCheck
@@ -32,7 +32,11 @@ main = do
      putStrLn separatorLine
      -- Exercise 2
      putStrLn $ exHead "Exercise 2"
-     putStrLn "Description Exercise 2"
+     putStrLn "number of mutants: 4000, all mutations, fut is multiplicationTable, total amount of mutants survived"
+     putStrLn "0 indicates killed, and 1 means survived"
+     let allMutations = mutators++ex1Mutators
+     results <- countSurvivors nrMutations allMutations multiplicationTableProps multiplicationTable
+     print results
      putStrLn separatorLine
 
      -- TODO print all kills and no kills? with percentage?
@@ -62,7 +66,6 @@ main = do
 
      putStrLn separatorLine
 
-     -- -- Exercise 5
-     -- putStrLn $ exHead "Exercise 5"
-     -- putStrLn separatorLine
+     -- Exercise 5
 
+     visualizeMutationResults multiplicationTable multiplicationTableProps 6

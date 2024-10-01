@@ -79,5 +79,7 @@ changeSigOfElement xs = do
 shuffleOutput :: [Integer] -> Gen [Integer]
 shuffleOutput = shuffle
 
+ex1Mutators = [replaceElement, shuffleOutput, changeSigOfElement]
+
 
 

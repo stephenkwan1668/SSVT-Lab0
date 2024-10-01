@@ -1,7 +1,7 @@
 module Exercise6 where
 
 import Exercise1
-import Exercise2 
+import Exercise2
 import Exercise3 (collectAllKills, main_Ex3)
 import Exercise4
 -- import Exercise4 hiding (main)
@@ -109,10 +109,9 @@ listOfPropsEx1 = "** 1. Random element change **\n\n"
      <> "be more interesting to observe if there are any clear patterns arising from its separate usage.\n"
      <> "\n"
 
--- Exercise 2
 
 
--- Exercise 3
+-- Exercise 2 + 3
 nrMutations :: Int
 nrMutations = 4000
 -- allKills :: IO [[Bool]]
@@ -120,3 +119,28 @@ nrMutations = 4000
 
 totalMuts :: [[Bool]] -> Int
 totalMuts dataTable = (length $ head dataTable) * (length dataTable)
+
+
+-- Exercise 5
+     -- Create a visualization function that takes the FUT, properties, and number of mutants
+visualizeMutationResults :: (Integer -> [Integer]) -> [[Integer] -> Integer -> Bool] -> Int -> IO ()
+visualizeMutationResults fut props numMutants = do
+    -- Run mutation tests with 4000 mutants
+    let allMutations = mutators++ex1Mutators
+    mutationResults <- mapM (\mut -> runMutations numMutants mut props fut) allMutations
+    
+    -- Filter out empty results (equivalent mutants) and concatenate lists per mutator
+    let killedMutants = concatMap (filter (not . null)) mutationResults
+    
+    let transposedMutants = transpose killedMutants
+    
+    putStrLn "=== Visualization of Mutation Testing ==="
+    putStrLn "Each row represents a property, each column a mutant. 'T' means the mutant was killed."
+    let visualData = map (map (\b -> if b then 'T' else 'F')) transposedMutants
+    mapM_ (putStrLn . concatMap (\c -> [c, ' '])) visualData
+
+    -- Additional statistics or summary can go here, like how many mutants each property killed.
+    putStrLn "\nSummary of killed mutants per property:"
+    mapM_ (print . length . filter id) transposedMutants
+    -- putStrLn $ exHead "Exercise 5"
+    -- putStrLn separatorLine
