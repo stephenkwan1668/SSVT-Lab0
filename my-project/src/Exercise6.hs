@@ -5,9 +5,9 @@ import Exercise2
 import Exercise3 (collectAllKills, main_Ex3)
 import Exercise4
 -- import Exercise4 hiding (main)
--- import Exercise5
+import Exercise5
 
-import MultiplicationTable (multiplicationTableProps)
+import MultiplicationTable 
 import Mutation
 
 import Test.QuickCheck
@@ -15,7 +15,7 @@ import Data.List
 import Control.Monad
 
 {-
-     Time Spend: 180 min
+     Time Spend: 360 min
 
      ===== **Main goals** =====
      - Visualisation of previous exercises
@@ -122,25 +122,25 @@ totalMuts dataTable = (length $ head dataTable) * (length dataTable)
 
 
 -- Exercise 5
-     -- Create a visualization function that takes the FUT, properties, and number of mutants
-visualizeMutationResults :: (Integer -> [Integer]) -> [[Integer] -> Integer -> Bool] -> Int -> IO ()
-visualizeMutationResults fut props numMutants = do
-    -- Run mutation tests with 4000 mutants
-    let allMutations = mutators++ex1Mutators
-    mutationResults <- mapM (\mut -> runMutations numMutants mut props fut) allMutations
-    
-    -- Filter out empty results (equivalent mutants) and concatenate lists per mutator
-    let killedMutants = concatMap (filter (not . null)) mutationResults
-    
+-- Visualization function that takes results from Exercise 5 and formats them for output
+visualizeConjectures :: IO ()
+visualizeConjectures = do
+    -- Run the mutation tests from Exercise 5 (4000 mutants)
+    res <- mapM (\mut -> runMutations 4000 mut propCombinations multiplicationTable) mutatorsFull
+
+    -- Filter and transpose the results to get mutant data grouped by properties
+    let killedMutants = concatMap (filter (not . null)) res
     let transposedMutants = transpose killedMutants
     
-    putStrLn "=== Visualization of Mutation Testing ==="
-    putStrLn "Each row represents a property, each column a mutant. 'T' means the mutant was killed."
-    let visualData = map (map (\b -> if b then 'T' else 'F')) transposedMutants
-    mapM_ (putStrLn . concatMap (\c -> [c, ' '])) visualData
-
-    -- Additional statistics or summary can go here, like how many mutants each property killed.
-    putStrLn "\nSummary of killed mutants per property:"
-    mapM_ (print . length . filter id) transposedMutants
-    -- putStrLn $ exHead "Exercise 5"
-    -- putStrLn separatorLine
+    -- Create equivalence classes as per Exercise 5
+    let equivalenceClasses = assocs (zip transposedMutants propNameCombinations)
+    
+    -- Print equivalence conjectures
+    putStrLn "\n=== Equivalence Conjectures ==="
+    putStrLn "These property sets are considered equivalent because they kill the same mutants."
+    showEquivalences equivalenceClasses
+    
+    -- Print implication conjectures
+    putStrLn "\n=== Implication Conjectures ==="
+    putStrLn "These property sets imply each other. If the first set kills a mutant, the second set also kills it."
+    showImplications equivalenceClasses

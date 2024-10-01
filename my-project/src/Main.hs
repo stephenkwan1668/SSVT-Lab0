@@ -67,5 +67,6 @@ main = do
      putStrLn separatorLine
 
      -- Exercise 5
-
-     visualizeMutationResults multiplicationTable multiplicationTableProps 6
+     putStrLn $ exHead "Exercise 5"
+     putStrLn "Property index mapping: \n (1) prop_tenElements \n (2) prop_firstElementIsInput \n (3) prop_sumIsTriangleNumberTimesInput \n (4) prop_linear \n (5) prop_moduloIsZero"
+     visualizeConjectures
