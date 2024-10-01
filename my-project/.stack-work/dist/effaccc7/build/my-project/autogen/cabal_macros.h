@@ -30,6 +30,16 @@
   (major1) == 4 && (major2) <  18 || \
   (major1) == 4 && (major2) == 18 && (minor) <= 2)
 #endif /* MIN_VERSION_base */
+/* package fitspec-0.4.10 */
+#ifndef VERSION_fitspec
+#define VERSION_fitspec "0.4.10"
+#endif /* VERSION_fitspec */
+#ifndef MIN_VERSION_fitspec
+#define MIN_VERSION_fitspec(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  4 || \
+  (major1) == 0 && (major2) == 4 && (minor) <= 10)
+#endif /* MIN_VERSION_fitspec */
 /* package random-1.2.1.2 */
 #ifndef VERSION_random
 #define VERSION_random "1.2.1.2"
@@ -113,7 +123,7 @@
 #endif /* MIN_TOOL_VERSION_runghc */
 
 #ifndef CURRENT_COMPONENT_ID
-#define CURRENT_COMPONENT_ID "my-project-0.1.0.0-2YaYdv0StvPLSt7Wufl8g8-my-project"
+#define CURRENT_COMPONENT_ID "my-project-0.1.0.0-1vSZfjo6nNl1WRQFdNYMSy-my-project"
 #endif /* CURRENT_COMPONENT_ID */
 #ifndef CURRENT_PACKAGE_VERSION
 #define CURRENT_PACKAGE_VERSION "0.1.0.0"

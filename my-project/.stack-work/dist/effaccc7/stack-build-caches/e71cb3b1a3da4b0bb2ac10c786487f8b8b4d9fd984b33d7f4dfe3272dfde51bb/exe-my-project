@@ -3,8 +3,24 @@ C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\CHANGELOG.md:
 C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\README.md:
   hash: 5ea29b1858aa6dee93e0d32c869b66b1beecebfda01b126ca14791315124ae08
 C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\my-project.cabal:
-  hash: 731e61cb26f9c0d79d8d249d08571e661a70b8ebb0286e3715b88dc3defebcfc
-C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Lab0.hs:
-  hash: 740a86f8672defa3fa42de6e74279485124874768f148a1785a67d42139dc533
+  hash: c1f1cb8f2921bc249dd07c39a304d6225c9dbe8a564779890d01f7c909963b9a
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise1.hs:
+  hash: 8d867a5c6b0117c86b1fbac37ea58e4da837ac1c5e162cea31f0322634e465d0
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise2.hs:
+  hash: dc87e0561b43de38ae9e20918f60bdf80414eb9737eb96335f3722727b85ad2f
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise3.hs:
+  hash: f66672e741a7c309e3ae3c770e16039ea9304a8450a168aadf7e82d1b580bc27
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise4.hs:
+  hash: 8b50a8dec256ce3c23bae0e2356d31cd67329d8e92c53ed005c823af3278a01d
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise5.hs:
+  hash: b0d096f406d23ca0a914662f21629937a688cc2bc192dfdf00465bc4733217a5
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Exercise6.hs:
+  hash: eda3b175b0f4ca663345fd851bf3aa2ecd35aa41e43defb790d0ad63a7971136
 C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Main.hs:
-  hash: 146b505a5531e888a1dc5450e2e4b7e09303089d066170e7449e535ace69886c
+  hash: dde9bc8f7ab4a82ac711de4736d995c9eba4e2ca2477884cf144f568da1b81a4
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\MultiplicationTable.hs:
+  hash: 243af13e08d53cf6d0165e0fddded94d5fe92dc3d1d8b2340316b88425ce3044
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\Mutation.hs:
+  hash: b7cfe5affa389e2348fbb5cb0e9420713a3eff5a7d4f04c71e414b6061c7715d
+C:\Users\steph\OneDrive\Projects\SSVT-Lab0\my-project\src\SetOrd.hs:
+  hash: 107bc9149f0a9aeb7c304f8480b4d8d8a1d42418e6c028542f2280a1854feff0

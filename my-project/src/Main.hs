@@ -1,96 +1,68 @@
 module Main where
 
+import Exercise1
+import Exercise2 
+import Exercise3 (collectAllKills, main_Ex3)
+import Exercise4
+import Exercise5
+import Exercise6
+
+import MultiplicationTable (multiplicationTableProps)
+import Mutation
+
 import Test.QuickCheck
-import Lab0
+import Data.List
+import Control.Monad
 
-
--- Test the simplified CNF conversion
-main :: IO ()
+main :: IO()
 main = do
-    let exampleFormula = Impl(Impl(Prop "A") (Prop "B")) (Prop "C")
-    putStrLn $ "Original Formula: " ++ show exampleFormula
-    putStrLn $ "CNF: " ++ show (cnf exampleFormula)
 
+     -- Ex3 and 4
+     allKills <- collectAllKills nrMutations multiplicationTableProps
+     -- Ex 4
+     let totalMutants = getTotalMutants allKills
+     let numberOfKills = getKillCountPerProp allKills
 
+     -- Exercise 1
+     putStrLn $ exHead "Exercise 1"
+     putStrLn "Properties that were defined in addition to the ones provided in the workshop"
+     putStrLn "with a brief description about their strenghts/weaknesses:\n"
 
+     putStrLn listOfPropsEx1
+     putStrLn separatorLine
+     -- Exercise 2
+     putStrLn $ exHead "Exercise 2"
+     putStrLn "Description Exercise 2"
+     putStrLn separatorLine
 
--- evenNumberList = [2,4,6,8]
--- evenNumber = 4
--- exampleString = "this is nice"
-    -- -- Pre-defined functions 
-    -- putStrLn "First 13 primes:"
-    -- print $ take 13 primes
+     -- TODO print all kills and no kills? with percentage?
+     -- That's already on another exercise?
+     -- Exercise 3
+     putStrLn $ exHead "Exercise 3"
+     putStrLn "** Task **"
+     putStrLn "Generate the minimal property subset from a set of properties.\n"
+     putStrLn ("Generating all subsets for " ++ (show nrMutations) ++ " mutations\n")
+     putStrLn ("... for a total of " ++ (show $ length $ head allKills) ++ " subsets")
+     putStrLn ("From a total of " ++ show (totalMuts allKills) ++ " mutations,")
+     print $ length allKills
 
-    -- putStrLn "Generating 5 random probabilities:"
-    -- probsResult <- probs 5
-    -- print probsResult
+     putStrLn separatorLine
 
-    -- -- 'all' function definition and usage -practice
-    -- putStrLn "'all' function practice:"
-    -- let areAllEven = all(\x -> rem x 2 == 0) evenNumberList
-    -- print areAllEven
+     -- Exercise 4
+     putStrLn $ exHead "Exercise 4"
+     putStrLn "** Task **"
+     putStrLn "For the mutants generated, calculate the percentage of those which were killed."
 
-    -- -- takeWhile practice
-    -- putStrLn "takeWhile practice:"
-    -- let lessThanSixList = takeWhile (\ x -> x < 6) evenNumberList
-    -- print lessThanSixList
+     putStrLn ("Total number of mutants: " ++ show totalMutants)
 
-    -- print $ take 3 (powerOfThreeList[1,2,3])
-    
-    -- print $ isOdd evenNumber
-    -- print $ isEven evenNumber
+     let decimalPlaces = 3
+     let percentages = getPercentage (fromIntegral totalMutants) numberOfKills
+     let roundPercentages = map (\value -> roundTo decimalPlaces value) percentages
+     mapM_ (\value -> print ((show value) ++ "%")) roundPercentages
 
-    -- print $ take 5 (filterOdds[1,2,3,4,5,6])
+     putStrLn separatorLine
 
-    -- print $ anyNegative evenNumberList
-
-    -- print $ reverseString exampleString
-
-    -- print $ reverseNumList evenNumberList
-
-    -- print $ factorial 4
-
-    -- print $ reverseList evenNumberList
-
-    -- print (True --> False)  -- Should print False
-    -- -- because not(true) || false is false
-    
-    -- print (False --> True)  -- Should print True
-    -- print (True --> True)   -- Should print True
-    -- print (False --> False) -- Should print True
-
-    -- print (True && True)
-
-    -- -- print $ forall evenNumberList isOdd
-    -- let result = forall [2, 4, 6, 8] odd
-    -- print result
-
-    -- -- This could be used as such if it is only "forall = all"
-    -- -- let result = forall even [2, 4, 6, 8]
-    -- -- print result
-
-    -- putStrLn "from main, random numbers"
-    -- randomNumbers <- probs 5
-    -- print randomNumbers
-
-    -- putStrLn "Enter your name:"
-    -- name <- getLine
-    -- putStrLn ("Hello, " ++ name ++ "!")
-
-    -- let divideResult = safeDivide 5 0
-    -- case divideResult of
-    --   Nothing -> putStrLn("Can not divide by 0")
-    --   Just value -> putStrLn ("safeDivide result: " ++ show value)
-    
-
-    -- let divideResult2 = safeDivide 5 1
-    -- putStrLn $ "safeDivide result: " ++ maybe "Division by zero" show divideResult2
-
-    -- let summedValueOfList = squaredList[1,2,3,4,5] 
-    -- putStrLn "squaredList value1 that is summed:"
-    -- print $ (squaredList[1,2,3])
-    -- let numbery =  sumUpList (squaredList[1,2,3])
-    -- print numbery
-
-
+     -- -- Exercise 5
+     -- putStrLn $ exHead "Exercise 5"
+     -- putStrLn separatorLine
 
