@@ -46,12 +46,12 @@ getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: 
 
 
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
-bindir     = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\bin"
-libdir     = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\lib\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0-2YaYdv0StvPLSt7Wufl8g8-my-project"
-dynlibdir  = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\lib\\x86_64-windows-ghc-9.6.6"
-datadir    = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\share\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0"
-libexecdir = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\libexec\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0"
-sysconfdir = "C:\\Users\\steph\\OneDrive\\Projects\\SSVT-Lab0\\.stack-work\\install\\bb5013a0\\etc"
+bindir     = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\bin"
+libdir     = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\lib\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0-2YaYdv0StvPLSt7Wufl8g8-my-project"
+dynlibdir  = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\lib\\x86_64-windows-ghc-9.6.6"
+datadir    = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\share\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0"
+libexecdir = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\libexec\\x86_64-windows-ghc-9.6.6\\my-project-0.1.0.0"
+sysconfdir = "C:\\Users\\mkwan\\SE\\SSVT\\Lab 0\\SSVT-Lab0\\.stack-work\\install\\75d66894\\etc"
 
 getBinDir     = catchIO (getEnv "my_project_bindir")     (\_ -> return bindir)
 getLibDir     = catchIO (getEnv "my_project_libdir")     (\_ -> return libdir)

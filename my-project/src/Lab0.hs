@@ -5,6 +5,16 @@ import Data.Char
 import System.Random
 import Test.QuickCheck
 
+addTwo :: Int -> Int
+addTwo x = x + 2
+
+properties :: [Int -> Bool]
+properties = 
+  [ \x -> addTwo x > x          -- Property 1: Result is greater than input
+  , \x -> addTwo x == x + 2     -- Property 2: Result is input plus 2
+  ]
+
+
 prime :: Integer -> Bool
 prime n = n > 1 && all (\ x -> rem n x /= 0) xs
   where xs = takeWhile (\ y -> y^2 <= n) primes
